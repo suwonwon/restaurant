@@ -3,7 +3,9 @@ package com.restaurant.controller;
 import com.restaurant.dto.RestFormDto;
 import com.restaurant.dto.RestSearchDto;
 import com.restaurant.entity.Rest;
+import com.restaurant.entity.Review;
 import com.restaurant.service.RestService;
+import com.restaurant.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +29,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class RestController {
     private final RestService restService;
+    private final ReviewService reviewService;
     @GetMapping(value = "/admin/rest/new")
     public String itemForm(Model model){
         model.addAttribute("restFormDto", new RestFormDto());
@@ -107,6 +111,32 @@ public class RestController {
         RestFormDto restFormDto = restService.getRestDtl(restId);
         model.addAttribute("rest", restFormDto);
         return "rest/restDtl";
+    }
+
+    @GetMapping(value = "/rest/{restId}/home")
+    public String restDtlHome(Model model, @PathVariable("restId") Long restId){
+        RestFormDto restFormDto = restService.getRestDtl(restId);
+        model.addAttribute("rest", restFormDto);
+        return "rest/details/home";
+    }
+    @GetMapping(value = "/rest/{restId}/menu")
+    public String restDtlMenu(Model model, @PathVariable("restId") Long restId){
+        RestFormDto restFormDto = restService.getRestDtl(restId);
+        model.addAttribute("rest", restFormDto);
+        return "rest/details/menu";
+    }
+    @GetMapping(value = "/rest/{restId}/image")
+    public String restDtlImage(Model model, @PathVariable("restId") Long restId){
+        RestFormDto restFormDto = restService.getRestDtl(restId);
+        model.addAttribute("rest", restFormDto);
+        return "rest/details/image";
+    }
+    @GetMapping(value = "/rest/{restId}/review")
+    public String restDtlReview(Model model, @PathVariable("restId") Long restId, Pageable pageable, Principal principal){
+        RestFormDto restFormDto = restService.getRestDtl(restId);
+        Page<Review> reviewPage = reviewService
+        model.addAttribute("rest", restFormDto);
+        return "rest/details/review";
     }
 
 }
