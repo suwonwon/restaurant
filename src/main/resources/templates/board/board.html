@@ -1,13 +1,60 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
-      layout:decorate="~{layouts/layout1}">
-
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
 <head>
-    <title>게시판</title>
-</head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Untree.co" />
+    <link rel="shortcut icon" href="favicon.png" />
 
-<th:block layout:fragment="css">
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap5" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css" />
+
+    <link rel="stylesheet" href="/css/tiny-slider.css" />
+    <link rel="stylesheet" href="/css/aos.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300&family=Nanum+Gothic:wght@700&family=Orbit&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+
+    <!-- 사용자 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <style>
+            .input-group {
+                margin-bottom : 15px
+            }
+            .img-div {
+                margin-bottom : 10px
+            }
+            .fieldError {
+                color: #bd2130;
+            }
+        </style>
+    </th:block>
+
+
+    <style>
+        .fieldError {
+            color: #bd2130;
+        }
+        .img img {
+            height: 350px;
+            object-fit: cover;
+        }
+        .container-login {
+            margin-top: 200px;
+            margin-bottom: 100px;
+        }
+
+    </style>
     <style>
     table {
   border-collapse: collapse;
@@ -209,17 +256,28 @@ section.notice {
   color: white;
   }
 </style>
-</th:block>
 
+    <title>
+        즐거운 식당 예약 문화 - 다이닝잇!
+    </title>
+</head>
 <body>
-<div layout:fragment="content">
-    <section class="notice">
-        <div class="page-title">
-            <div class="container">
-                <h3>게시판</h3>
-            </div>
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+            <span class="icofont-close js-menu-toggle"></span>
         </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
 
+<div id="nav" th:replace="layouts/nav.html :: nav"></div> <!-- 네비게이션바-->
+
+
+
+<div class="container-login">
+
+    <div class="col-md-4 mx-auto">
         <!-- board seach area -->
         <div id="board-search">
             <div class="container">
@@ -263,32 +321,44 @@ section.notice {
                 </table>
             </div>
         </div>
-    </section>
 
-    <div>
-        <ul class="pagination">
-            <li th:if="${page.first}">
-                <a href="#" class="page-link disabled">&laquo;</a>
-            </li>
-            <li th:unless="${page.first}">
-                <a th:href="@{/board(page=0,size=${page.size})}" class="page-link">&laquo;</a>
-            </li>
-            <li th:each="i : ${#numbers.sequence(0, page.totalPages-1)}">
-                <a th:href="@{/board(page=${i},size=${page.size})}" th:class="${page.number == i} ? 'page-link active' : 'page-link'">
-                    <span th:text="${i + 1}"></span>
-                </a>
-            </li>
-            <li th:if="${page.last}">
-                <a href="#" class="page-link disabled">&raquo;</a>
-            </li>
-            <li th:unless="${page.last}">
-                <a th:href="@{/board(page=${page.totalPages-1},size=${page.size})}" class="page-link">&raquo;</a>
-            </li>
-        </ul>
+        <div>
+            <ul class="pagination">
+                <li th:if="${page.first}">
+                    <a href="#" class="page-link disabled">&laquo;</a>
+                </li>
+                <li th:unless="${page.first}">
+                    <a th:href="@{/board(page=0,size=${page.size})}" class="page-link">&laquo;</a>
+                </li>
+                <li th:each="i : ${#numbers.sequence(0, page.totalPages-1)}">
+                    <a th:href="@{/board(page=${i},size=${page.size})}" th:class="${page.number == i} ? 'page-link active' : 'page-link'">
+                        <span th:text="${i + 1}"></span>
+                    </a>
+                </li>
+                <li th:if="${page.last}">
+                    <a href="#" class="page-link disabled">&raquo;</a>
+                </li>
+                <li th:unless="${page.last}">
+                    <a th:href="@{/board(page=${page.totalPages-1},size=${page.size})}" class="page-link">&raquo;</a>
+                </li>
+            </ul>
+        </div>
     </div>
+
 </div>
+</div>
+
+<div id="footer" th:replace="layouts/footer.html :: footer"></div> <!-- 푸터-->
+<!-- /.site-footer -->
+
+<!-- Preloader -->
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/tiny-slider.js"></script>
+<script src="/js/aos.js"></script>
+<script src="/js/navbar.js"></script>
+<script src="/js/counter.js"></script>
+<script src="/js/custom.js"></script>
+
 </body>
-
-
-
 </html>

@@ -1,13 +1,60 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
-      layout:decorate="~{layouts/layout1}">
-
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
 <head>
-  <meta name="_csrf" th:content="${_csrf.token}"/>
-  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
-</head>
-<th:block layout:fragment="css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Untree.co" />
+  <link rel="shortcut icon" href="favicon.png" />
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap5" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="/fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css" />
+
+  <link rel="stylesheet" href="/css/tiny-slider.css" />
+  <link rel="stylesheet" href="/css/aos.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300&family=Nanum+Gothic:wght@700&family=Orbit&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+
+  <!-- 사용자 CSS 추가 -->
+  <th:block layout:fragment="css">
+    <style>
+            .input-group {
+                margin-bottom : 15px
+            }
+            .img-div {
+                margin-bottom : 10px
+            }
+            .fieldError {
+                color: #bd2130;
+            }
+        </style>
+  </th:block>
+
+
+  <style>
+        .fieldError {
+            color: #bd2130;
+        }
+        .img img {
+            height: 350px;
+            object-fit: cover;
+        }
+        .container-login {
+            margin-top: 200px;
+            margin-bottom: 100px;
+        }
+
+    </style>
   <style>
 /* styles.css */
 
@@ -74,26 +121,58 @@ input[type="submit"]:hover {
 }
 
     </style>
-</th:block>
 
-<div layout:fragment="content">
-  <div class="container">
-    <h1>게시판 글 작성</h1>
-    <form action="/board/write" method="post">
-      <div class="form-group">
-        <label for="title">제목:</label>
-        <input type="text" id="title" name="title" required>
-      </div>
-      <div class="form-group">
-        <label for="contents">내용:</label>
-        <textarea id="contents" name="contents" rows="8" required></textarea>
-      </div>
-      <div class="form-group">
-        <input type="submit" value="글 작성">
-      </div>
-      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-    </form>
+  <title>
+    즐거운 식당 예약 문화 - 다이닝잇!
+  </title>
+</head>
+<body>
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
+    </div>
   </div>
+  <div class="site-mobile-menu-body"></div>
 </div>
 
+<div id="nav" th:replace="layouts/nav.html :: nav"></div> <!-- 네비게이션바-->
+
+
+
+
+
+  <div class="col-md-4 mx-auto">
+    <div class="container">
+      <h1>게시판 글 작성</h1>
+      <form action="/board/write" method="post">
+        <div class="form-group">
+          <label for="title">제목:</label>
+          <input type="text" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="contents">내용:</label>
+          <textarea id="contents" name="contents" rows="8" required></textarea>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="글 작성">
+        </div>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+      </form>
+    </div>
+</div>
+
+<div id="footer" th:replace="layouts/footer.html :: footer"></div> <!-- 푸터-->
+<!-- /.site-footer -->
+
+<!-- Preloader -->
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/tiny-slider.js"></script>
+<script src="/js/aos.js"></script>
+<script src="/js/navbar.js"></script>
+<script src="/js/counter.js"></script>
+<script src="/js/custom.js"></script>
+
+</body>
 </html>

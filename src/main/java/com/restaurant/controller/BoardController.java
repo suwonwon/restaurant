@@ -140,5 +140,10 @@ public class BoardController {
 
     }
 
+    @GetMapping("/basics")
+    public String asd(){
+        return "basics";
+    }
+
 }
 
