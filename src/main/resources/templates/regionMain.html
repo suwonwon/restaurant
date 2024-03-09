@@ -1,21 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout1}">
-
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>어디로 갈까요?</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Untree.co" />
+    <link rel="shortcut icon" href="favicon.png" />
+
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap5" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css" />
+
+    <link rel="stylesheet" href="/css/tiny-slider.css" />
+    <link rel="stylesheet" href="/css/aos.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300&family=Nanum+Gothic:wght@700&family=Orbit&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+
     <!--    <link rel="stylesheet" href="styles.css">-->
 </head>
+<title>어디로 갈까요?</title>
 
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
     <style>
         h2 {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 150px;
         }
 
         .city-container {
@@ -24,6 +43,7 @@
             justify-content: space-between; /* 카드 사이의 간격을 균등하게 조절 */
             gap: 20px;
             margin-top: 50px;
+            margin-bottom: 50px;
         }
 
         .city-card {
@@ -40,6 +60,10 @@
         .city-card img {
             width: 100%;
             height: auto;
+            width: 300px;
+            height: 300px;
+            border-radius: 60px;
+            object-fit: cover;
         }
 
         .city-card p {
@@ -50,46 +74,63 @@
     </style>
 </th:block>
 
-<div layout:fragment="content">
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+            <span class="icofont-close js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
+
+<div id="nav" th:replace="layouts/nav.html :: nav"></div>
     <h2>전국의 모든 식당</h2>
     <div class="city-container">
         <div class="city-card" onclick="location.href='seoul'">
-            <img src="" alt="서울 이미지">
+            <img src="/images/seoul.jpg" alt="서울 이미지">
             <p>서울</p>
         </div>
         <div class="city-card" onclick="location.href='gyeongin'">
-            <img src="" alt="경인 이미지">
+            <img src="/images/gyeonggi.jpeg" alt="경인 이미지">
             <p>경기/인천</p>
         </div>
         <div class="city-card" onclick="location.href='gangwon'">
-            <img src="" alt="강원 이미지">
+            <img src="/images/gangwon.jpg" alt="강원 이미지">
             <p>강원</p>
         </div>
         <div class="city-card" onclick="location.href='chungcheong'">
-            <img src="" alt="충청 이미지">
+            <img src="/images/chungcheong.jpeg" alt="충청 이미지">
             <p>충남/충북</p>
         </div>
         <div class="city-card" onclick="location.href='daejeon'">
-            <img src="" alt="대전 이미지">
+            <img src="/images/daejeon.jpeg" alt="대전 이미지">
             <p>대전/세종</p>
         </div>
 
         <div class="city-card" onclick="location.href='jeolla'">
-            <img src="" alt="전라 이미지">
+            <img src="/images/jeolla.jpeg" alt="전라 이미지">
             <p>전남/전북/광주</p>
         </div>
         <div class="city-card" onclick="location.href='gyeongsang'">
-            <img src="" alt="경상 이미지">
+            <img src="/images/gyeongsang.jpg" alt="경상 이미지">
             <p>경남/경북</p>
         </div>
         <div class="city-card" onclick="location.href='namdong'">
-            <img src="" alt="부산 이미지">
+            <img src="/images/busan.jpeg" alt="부산 이미지">
             <p>부산/울산/대구</p>
         </div>
         <div class="city-card" onclick="location.href='jeju'">
-            <img src="" alt="제주 이미지">
+            <img src="/images/jeju.jpeg" alt="제주 이미지">
             <p>제주</p>
         </div>
     </div>
 </div>
+
+<div id="footer" th:replace="layouts/footer.html :: footer"></div>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/tiny-slider.js"></script>
+<script src="/js/aos.js"></script>
+<script src="/js/navbar.js"></script>
+<script src="/js/counter.js"></script>
+<script src="/js/custom.js"></script>
 </html>
