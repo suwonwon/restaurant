@@ -1,12 +1,34 @@
 <!DOCTYPE html>
-<html xmlns:th=http://www.thymeleaf.org
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
-      layout:decorate="~{layouts/layout1}">
-
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
 <head>
-  <title>공지사항</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Untree.co" />
+  <link rel="shortcut icon" href="favicon.png" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap5" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="/fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css" />
+
+  <link rel="stylesheet" href="/css/tiny-slider.css" />
+  <link rel="stylesheet" href="/css/aos.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300&family=Nanum+Gothic:wght@700&family=Orbit&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 </head>
+<!--<head>-->
+<!--  <title>공지사항</title>-->
+<!--</head>-->
 
 <th:block layout:fragment="css">
   <style>
@@ -17,7 +39,6 @@
 section.notice {
   padding: 80px 0;
 }
-
 .page-title {
   margin-bottom: 60px;
 }
@@ -27,14 +48,12 @@ section.notice {
   font-weight: 400;
   text-align: center;
 }
-
 #board-search .search-window {
   padding: 15px 0;
   background-color: #f9f7f9;
 }
 #board-search .search-window .search-wrap {
   position: relative;
-/*   padding-right: 124px; */
   margin: 0 auto;
   width: 80%;
   max-width: 564px;
@@ -60,14 +79,12 @@ section.notice {
   padding: 0;
   font-size: 16px;
 }
-
 .board-table {
   font-size: 13px;
   width: 100%;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
 }
-
 .board-table a {
   color: #333;
   display: inline-block;
@@ -81,36 +98,29 @@ section.notice {
 .board-table th {
   text-align: center;
 }
-
 .board-table .th-num {
   width: 100px;
   text-align: center;
 }
-
 .board-table .th-date {
   width: 200px;
 }
-
 .board-table th, .board-table td {
   padding: 14px 0;
 }
-
 .board-table tbody td {
   border-top: 1px solid #e7e7e7;
   text-align: center;
 }
-
 .board-table tbody th {
   padding-left: 28px;
   padding-right: 14px;
   border-top: 1px solid #e7e7e7;
   text-align: left;
 }
-
 .board-table tbody th p{
   display: none;
 }
-
 .btn {
   display: inline-block;
   padding: 0 30px;
@@ -138,31 +148,24 @@ section.notice {
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
-
 .btn-dark {
   background: #555;
   color: #fff;
 }
-
 .btn-dark:hover, .btn-dark:focus {
   background: #373737;
   border-color: #373737;
   color: #fff;
 }
-
 .btn-dark {
   background: #555;
   color: #fff;
 }
-
 .btn-dark:hover, .btn-dark:focus {
   background: #373737;
   border-color: #373737;
   color: #fff;
 }
-
-/* reset */
-
 * {
   list-style: none;
   text-decoration: none;
@@ -187,9 +190,6 @@ section.notice {
   width: 1px;
   height: 1px;
 }
-
-
-
   .pagination {
   display: flex;
   list-style-type: none;
@@ -212,12 +212,24 @@ section.notice {
 </style>
 </th:block>
 
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+
+<div id="nav" th:replace="layouts/nav.html :: nav"></div>
+<div class="container">
+
 <body>
 <div layout:fragment="content">
   <section class="notice">
     <div class="page-title">
       <div class="container">
-        <h3>공지사항</h3>
+        <h3 style="margin-top: 90px">공지사항</h3>
       </div>
     </div>
 
@@ -227,7 +239,6 @@ section.notice {
         <div class="search-window">
           <form action="/notice/search" method="get">
             <div class="search-wrap">
-              <button sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/board/notice/write" >글작성</a> </button>
               <label for="search" class="blind">게시판 내용 검색</label>
               <input id="search" type="search" name="search" placeholder="검색어를 입력해주세요." value="">
               <button type="submit" class="btn btn-dark">검색</button>
@@ -266,7 +277,8 @@ section.notice {
     </div>
   </section>
 
-  <div>
+  <button sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/board/notice/write">글작성</a></button>
+  <div style="margin-bottom: 50px;">
     <ul class="pagination">
       <li th:if="${page.first}">
         <a href="#" class="page-link disabled">&laquo;</a>
@@ -290,6 +302,12 @@ section.notice {
 </div>
 </body>
 
-
-
+<div id="footer" th:replace="layouts/footer.html :: footer"></div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/tiny-slider.js"></script>
+<script src="/js/aos.js"></script>
+<script src="/js/navbar.js"></script>
+<script src="/js/counter.js"></script>
+<script src="/js/custom.js"></script>
 </html>
