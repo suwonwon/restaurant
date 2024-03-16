@@ -1,21 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
-      layout:decorate="~{layouts/layout1}">
-
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
 <head>
-    <title>게시판</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Untree.co" />
+    <link rel="shortcut icon" href="favicon.png" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap5" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css" />
+
+    <link rel="stylesheet" href="/css/tiny-slider.css" />
+    <link rel="stylesheet" href="/css/aos.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300&family=Nanum+Gothic:wght@700&family=Orbit&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 </head>
+<!--<head>-->
+<!--    <title>게시판</title>-->
+<!--</head>-->
 
 <th:block layout:fragment="css">
     <style>
-    table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-section.notice {
-  padding: 80px 0;
-}
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        section.notice {
+            padding: 80px 0;
+        }
 
 .page-title {
   margin-bottom: 60px;
@@ -160,8 +184,6 @@ section.notice {
   color: #fff;
 }
 
-/* reset */
-
 * {
   list-style: none;
   text-decoration: none;
@@ -174,10 +196,6 @@ section.notice {
   display: block;
   clear: both;
 }
-.container {
-  width: 1100px;
-  margin: 0 auto;
-}
 .blind {
   position: absolute;
   overflow: hidden;
@@ -186,16 +204,12 @@ section.notice {
   width: 1px;
   height: 1px;
 }
-
-
-
   .pagination {
   display: flex;
   list-style-type: none;
   padding: 0;
   justify-content: center;
   }
-
   .page-link {
   padding: 8px 16px;
   text-decoration: none;
@@ -203,26 +217,47 @@ section.notice {
   border: 1px solid #ddd;
   margin: 2px;
   }
-
   .page-link.active {
   background-color: #4CAF50;
   color: white;
   }
+        .btn-write {
+            background-color: #555;
+            width:70px;
+        }
+        .btn-write:hover {
+            background-color: #373737;
+            border-color: #373737;
+        }
+        .btn-write-loc {
+            display: flex;
+            justify-content: flex-end;
+        }
 </style>
 </th:block>
+
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+            <span class="icofont-close js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
+
+<div id="nav" th:replace="layouts/nav.html :: nav"></div>
 
 <body>
 <div layout:fragment="content">
     <section class="notice">
         <div class="page-title">
             <div class="container">
-                <h3>게시판</h3>
+                <h3 style="margin-top: 90px">자유게시판</h3>
             </div>
         </div>
 
-        <!-- board seach area -->
+        <div class="container">
         <div id="board-search">
-            <div class="container">
                 <div class="search-window">
                     <form action="/board/search" method="get">
                         <div class="search-wrap">
@@ -231,14 +266,10 @@ section.notice {
                             <button type="submit" class="btn btn-dark">검색</button>
                         </div>
                     </form>
-                    <button ><a href="/board/write">글작성</a> </button>
                 </div>
-            </div>
         </div>
 
-        <!-- board list area -->
         <div id="board-list">
-            <div class="container">
                 <table class="board-table">
                     <thead>
                     <tr>
@@ -261,11 +292,13 @@ section.notice {
                     </th:block>
                     </tbody>
                 </table>
+            <div class="btn-write-loc" style="text-align: right; margin-top: 7px;">
+                <a href="/board/write" class="btn btn-secondary btn-sm d-flex justify-content-center align-items-center btn-write">글작성</a>
             </div>
         </div>
     </section>
 
-    <div>
+    <div style="margin-bottom: 50px;">
         <ul class="pagination">
             <li th:if="${page.first}">
                 <a href="#" class="page-link disabled">&laquo;</a>
@@ -289,6 +322,12 @@ section.notice {
 </div>
 </body>
 
-
-
+    <div id="footer" th:replace="layouts/footer.html :: footer"></div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/tiny-slider.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/navbar.js"></script>
+    <script src="/js/counter.js"></script>
+    <script src="/js/custom.js"></script>
 </html>

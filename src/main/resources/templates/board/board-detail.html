@@ -1,26 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th=http://www.thymeleaf.org
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
-      layout:decorate="~{layouts/layout1}">
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Untree.co" />
+  <link rel="shortcut icon" href="favicon.png" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap5" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="/fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css" />
+
+  <link rel="stylesheet" href="/css/tiny-slider.css" />
+  <link rel="stylesheet" href="/css/aos.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300&family=Nanum+Gothic:wght@700&family=Orbit&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
 <th:block layout:fragment="css">
   <style>
   html {
 	font-family: "Noto Sans KR", sans-serif;
 }
 
-/* 노말라이즈 */
 body, ul, li, h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
-a:link {
-	color: lightblue;
-}
-
-/* 라이브러리 */
 .con {
 	margin: 0 auto;
 }
@@ -39,6 +57,7 @@ a:link {
 .cell {
 	float: left;
 	box-sizing: border-box;
+  height: 400px;
 }
 
 .cell-right {
@@ -150,7 +169,7 @@ html, body {
 
 .article-detail > table {
     border:none;
-    width:calc(100% - 100px);
+    /*width:calc(100% - 100px);*/
 }
 
 .article-detail > table th, .article-detail > table td {
@@ -168,8 +187,8 @@ html, body {
 
 .article-detail > table tr.article-title > td {
     height:40px;
-    font-weight:bold;
-    font-size:1.2rem;
+    font-weight:normal;
+    font-size:0.8rem;
 }
 
 .article-detail > table td:last-child {
@@ -233,34 +252,161 @@ html, body {
 .reply-list > table td {
     border:none;
 }
-
-.reply-list > table tr:nth-child(2n+1) {
-    background-color:rgba(0,0,0,0.06);
-}
-
 .reply-list > table td:first-child {
     font-weight:bold;
 }
-
 .reply-list > table td:first-child::after {
     font-weight:bold;
 }
+  .reply-list table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+
+  .reply-list td, .reply-list th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /*.reply-list th:nth-child(1) {*/
+  /*  width: 50%;*/
+  /*}*/
+
+  /*.reply-list th:nth-child(2) {*/
+  /*  width: 50%;*/
+  /*}*/
+
+  /*.reply-list th:nth-child(3) {*/
+  /*  width: 20%;*/
+  /*}*/
+
+  /*.reply-list th:nth-child(4) {*/
+  /*  width: 10%;*/
+  /*}*/
+
+  section.notice {
+    padding: 80px 0;
+  }
+  .page-title {
+    margin-bottom: 60px;
+  }
+  .page-title h3 {
+    font-size: 28px;
+    color: #333333;
+    font-weight: 400;
+    text-align: center;
+  }
+  .button-container {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0 30px;
+    font-size: 15px;
+    font-weight: 400;
+    background: transparent;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  .btn-dark {
+    background: #555;
+    color: #fff;
+  }
+  .btn-dark:hover, .btn-dark:focus {
+    background: #373737;
+    border-color: #373737;
+    color: #fff;
+  }
+  .btn-dark {
+    background: #555;
+    color: #fff;
+  }
+  .btn-dark:hover, .btn-dark:focus {
+    background: #373737;
+    border-color: #373737;
+    color: #fff;
+  }
+  * {
+    list-style: none;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .button-container {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .btn-write {
+    background-color: #555;
+    width:70px;
+  }
+  .btn-write:hover {
+    background-color: #373737;
+    border-color: #373737;
+  }
+  .btn-write-loc {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .article-info-table {
+    height: 400px;
+  }
     </style>
 </th:block>
+
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+
+<div id="nav" th:replace="layouts/nav.html :: nav"></div>
+
 <body>
 
-
 <div layout:fragment="content">
-  <h1 class="con">게시글 상세</h1>
-
+  <section class="board">
+    <div class="container" style="margin-bottom: 60px;">
+      <div class="page-title">
+        <div class="container">
+          <h3 class="con" style="margin-top: 170px">게시글 상세</h3>
+        </div>
+      </div>
   <section class="article-detail table-common con row">
-    <button><a href="/board">글 목록</a> </button>
-    <div th:if="${State == 1}">
-      <button id="deleteButton" onclick="deleteBoard()" >글 삭제</button>
-      <button ><a th:href="@{/board/update/{p_id}(p_id=${board.p_id})}">글 수정</a></button>
-    </div>
     <table class="cell" border="1">
-
       <colgroup>
         <col width="100px">
       </colgroup>
@@ -283,29 +429,42 @@ html, body {
       </tbody>
     </table>
   </section>
-
+      <div class="button-container">
+      <div style="text-align: right; margin-top: 7px;">
+        <a href="/board" class="btn btn-secondary btn-sm d-flex justify-content-center align-items-center btn-write">목록</a>
+      </div>
+      <div style="text-align: right; margin-top: 7px;">
+        <a th:href="@{/board/update/{p_id}(p_id=${board.p_id})}" class="btn btn-secondary btn-sm d-flex justify-content-center align-items-center btn-write">수정</a>
+      </div>
+      <div style="text-align: right; margin-top: 7px;">
+        <a id="deleteButton" onclick="deleteBoard()" class="btn btn-secondary btn-sm d-flex justify-content-center align-items-center btn-write">삭제</a>
+      </div>
+      </div>
   <div class="con reply">
-    <h1 class="">댓글 입력</h1>
+    <th class="">댓글 입력</th>
     <section class="reply-form">
       <form id="commentForm" action="/board/comment/write" method="post">
-        <div>
-          <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
+        <div class="comment-section" style="display: flex; align-items: center;">
+          <textarea id="comment" name="comment" rows="4" style="flex-grow: 1; resize: none; margin-right: 10px;padding: 7px;"></textarea>
           <input type="hidden" name="p_id" th:value="${board.p_id}">
           <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-          <input type="submit" value="댓글 작성">
+          <div class="btn-write-loc" style="text-align: right; margin-top: 7px;">
+            <button type="submit" class="btn btn-secondary btn-sm d-flex justify-content-center align-items-center btn-write">작성</button>
+          </div>
+
         </div>
       </form>
     </section>
 
-    <h1 class="">댓글 목록</h1>
+    <th class="">댓글 목록</th>
     <section class="reply-list table-common">
       <table border="1">
-        <tr>
-          <td>댓글</td>
-          <td>작성자</td>
-          <td>작성일</td>
-          <td>삭제</td>
-        </tr>
+<!--        <tr>-->
+<!--          <td>댓글</td>-->
+<!--          <td>작성자</td>-->
+<!--          <td>작성일</td>-->
+<!--          <td>삭제</td>-->
+<!--        </tr>-->
         <tbody>
         <th:block th:each="comment : ${comments}">
           <tr>
@@ -315,7 +474,9 @@ html, body {
             <div th:if="${#authentication.principal.username==board.m_id.email
             or #authentication.principal.username== comment.m_id.email
             or #authorization.expression('hasAnyAuthority(''ROLE_ADMIN'')')}">
-            <td>  <button th:attr="data-comment-id=${comment.c_id}" class="delete-comment-btn" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">삭제</button></td>
+            <td>
+              <button th:attr="data-comment-id=${comment.c_id}" class="btn btn-secondary btn-sm d-flex justify-content-center align-items-center delete-comment-btn btn-write" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >삭제</button>
+            </td>
             </div>
             <div th:unless="${#authentication.principal.username==comment.m_id.email}">
               <td> </td>
@@ -326,8 +487,19 @@ html, body {
       </table>
     </section>
   </div>
+
+  </section>
 </div>
 </body>
+
+<div id="footer" th:replace="layouts/footer.html :: footer"></div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/tiny-slider.js"></script>
+<script src="/js/aos.js"></script>
+<script src="/js/navbar.js"></script>
+<script src="/js/counter.js"></script>
+<script src="/js/custom.js"></script>
 </html>
 <script>
 
