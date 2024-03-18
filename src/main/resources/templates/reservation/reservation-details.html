@@ -1,59 +1,247 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Untree.co" />
+  <link rel="shortcut icon" href="favicon.png" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap5" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="/fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css" />
+
+  <link rel="stylesheet" href="/css/tiny-slider.css" />
+  <link rel="stylesheet" href="/css/aos.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300&family=Nanum+Gothic:wght@700&family=Orbit&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<head>
   <meta name="_csrf" th:content="${_csrf.token}"/>
   <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
-  <title>Title</title>
-
-  <!-- CSS only -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link th:href="@{/css/layout1.css}" rel="stylesheet">
-
-  <!-- JS, Popper.js, and jQuery -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <th:block layout:fragment="script"></th:block>
-  <th:block layout:fragment="css"></th:block>
-
 </head>
-<body>
 
-<div th:replace="fragments/header::header"></div>
+<th:block layout:fragment="css">
+  <style>
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    section.notice {
+      padding: 80px 0;
+    }
+    .page-title {
+      margin-bottom: 60px;
+    }
+    .page-title h3 {
+      font-size: 28px;
+      color: #333333;
+      font-weight: 400;
+      text-align: center;
+    }
+    #board-search .search-window {
+      padding: 15px 0;
+      background-color: #f9f7f9;
+    }
+    #board-search .search-window .search-wrap {
+      position: relative;
+      margin: 0 auto;
+      width: 80%;
+      max-width: 564px;
+    }
+    #board-search .search-window .search-wrap input {
+      height: 40px;
+      width: 100%;
+      font-size: 14px;
+      padding: 7px 14px;
+      border: 1px solid #ccc;
+    }
+    #board-search .search-window .search-wrap input:focus {
+      border-color: #333;
+      outline: 0;
+      border-width: 1px;
+    }
+    #board-search .search-window .search-wrap .btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 108px;
+      padding: 0;
+      font-size: 16px;
+    }
+    .board-table {
+      font-size: 13px;
+      width: 100%;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+    .board-table a {
+      color: #333;
+      display: inline-block;
+      line-height: 1.4;
+      word-break: break-all;
+      vertical-align: middle;
+    }
+    .board-table a:hover {
+      text-decoration: underline;
+    }
+    .board-table th {
+      text-align: center;
+    }
+    .board-table .th-num {
+      width: 100px;
+      text-align: center;
+    }
+    .board-table .th-date {
+      width: 200px;
+    }
+    .board-table th, .board-table td {
+      padding: 14px 0;
+    }
+    .board-table tbody td {
+      border-top: 1px solid #e7e7e7;
+      text-align: center;
+    }
+    .board-table tbody th {
+      padding-left: 28px;
+      padding-right: 14px;
+      border-top: 1px solid #e7e7e7;
+      text-align: left;
+    }
+    .board-table tbody th p{
+      display: none;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0 30px;
+      font-size: 15px;
+      font-weight: 400;
+      background: transparent;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      border: 1px solid transparent;
+      text-transform: uppercase;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+    .btn-dark {
+      background: #555;
+      color: #fff;
+    }
+    .btn-dark:hover, .btn-dark:focus {
+      background: #373737;
+      border-color: #373737;
+      color: #fff;
+    }
+    .btn-dark {
+      background: #555;
+      color: #fff;
+    }
+    .btn-dark:hover, .btn-dark:focus {
+      background: #373737;
+      border-color: #373737;
+      color: #fff;
+    }
+    * {
+      list-style: none;
+      text-decoration: none;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    .clearfix:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .blind {
+      position: absolute;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      margin: -1px;
+      width: 1px;
+      height: 1px;
+    }
+    .pagination {
+      display: flex;
+      list-style-type: none;
+      padding: 0;
+      justify-content: center;
+    }
+    .page-link {
+      padding: 8px 16px;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      margin: 2px;
+    }
+    .page-link.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .btn-write {
+      background-color: #555;
+      width:70px;
+    }
+    .btn-write:hover {
+      background-color: #373737;
+      border-color: #373737;
+    }
+    .btn-write-loc {
+      display: flex;
+      justify-content: flex-end;
+    }
+    </style>
+</th:block>
 
-<div layout:fragment="content" class="content">
-  <div class="site-mobile-menu site-navbar-target">
-    <div class="site-mobile-menu-header">
-      <div class="site-mobile-menu-close">
-        <span class="icofont-close js-menu-toggle"></span>
-      </div>
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
     </div>
-    <div class="site-mobile-menu-body"></div>
   </div>
-
-
-
-  <div class="container">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-lg-9 text-center mt-5">
-        <h1 class="heading" data-aos="fade-up">
-          내 예약 보기
-        </h1>
-      </div>
-    </div>
-  </div>
+  <div class="site-mobile-menu-body"></div>
 </div>
 
+<div id="nav" th:replace="layouts/nav.html :: nav"></div>
 
-
+<body>
+<div layout:fragment="content">
 <div class="section">
+  <div class="page-title">
+    <div class="container">
+      <h3 style="margin-top: 90px">예약 리스트</h3>
+    </div>
+  </div>
+
   <div class="container">
     <div class="row justify-content-between">
-      <div class="col-lg-7">
-        <h1>예약 리스트</h1>
         <table class="table table-striped">
           <thead>
           <tr>
@@ -118,17 +306,21 @@
             </li>
           </ul>
         </div>
-      </div>
     </div>
-
   </div>
-</div> <!-- 푸터-->
-
 </div>
-
-<div th:replace="fragments/footer::footer"></div>
-
+</div>
 </body>
+
+<div id="footer" th:replace="layouts/footer.html :: footer"></div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/tiny-slider.js"></script>
+<script src="/js/aos.js"></script>
+<script src="/js/navbar.js"></script>
+<script src="/js/counter.js"></script>
+<script src="/js/custom.js"></script>
+</html>
 
 <script th:inline="javascript">
    document.addEventListener("DOMContentLoaded", function() {
@@ -204,6 +396,3 @@
     }
 });
 </script>
-
-</script>
-</html>
