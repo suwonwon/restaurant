@@ -1,117 +1,322 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout1}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Untree.co" />
+    <link rel="shortcut icon" href="favicon.png" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap5" />
 
-<!-- 사용자 스크립트 추가 -->
-<th:block layout:fragment="script">
-    <script th:inline="javascript">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+    />
 
-        $(document).ready(function(){
-            $("#searchBtn").on("click",function(e) {
-                e.preventDefault();
-                page(0);
-            });
-        });
+    <link rel="stylesheet" href="/fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css" />
 
-        function page(page){
-            var searchDateType = $("#searchDateType").val();
-            var searchSellStatus = $("#searchSellStatus").val();
-            var searchBy = $("#searchBy").val();
-            var searchQuery = $("#searchQuery").val();
+    <link rel="stylesheet" href="/css/tiny-slider.css" />
+    <link rel="stylesheet" href="/css/aos.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300&family=Nanum+Gothic:wght@700&family=Orbit&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+</head>
 
-            location.href="/admin/rests/" + page + "?searchDateType=" + searchDateType
-                + "&searchSellStatus=" + searchSellStatus
-                + "&searchBy=" + searchBy
-                + "&searchQuery=" + searchQuery;
-        }
-
-    </script>
-</th:block>
-
-<!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
     <style>
-        select{
-            margin-right:10px;
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        section.notice {
+            padding: 80px 0;
+        }
+        .page-title {
+            margin-bottom: 60px;
+        }
+        .page-title h3 {
+            font-size: 28px;
+            color: #333333;
+            font-weight: 400;
+            text-align: center;
+        }
+        #board-search .search-window {
+            padding: 15px 0;
+            background-color: #f9f7f9;
+        }
+        #board-search .search-window .search-wrap {
+            position: relative;
+            margin: 0 auto;
+            width: 80%;
+            max-width: 564px;
+        }
+        #board-search .search-window .search-wrap input {
+            height: 40px;
+            width: 100%;
+            font-size: 14px;
+            padding: 7px 14px;
+            border: 1px solid #ccc;
+        }
+        #board-search .search-window .search-wrap input:focus {
+            border-color: #333;
+            outline: 0;
+            border-width: 1px;
+        }
+        #board-search .search-window .search-wrap .btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 108px;
+            padding: 0;
+            font-size: 16px;
+        }
+        .board-table {
+            font-size: 13px;
+            width: 100%;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+        .board-table a {
+            color: #333;
+            display: inline-block;
+            line-height: 1.4;
+            word-break: break-all;
+            vertical-align: middle;
+        }
+        .board-table a:hover {
+            text-decoration: underline;
+        }
+        .board-table th {
+            text-align: center;
+        }
+        .board-table .th-num {
+            width: 100px;
+            text-align: center;
+        }
+        .board-table .th-date {
+            width: 200px;
+        }
+        .board-table th, .board-table td {
+            padding: 14px 0;
+        }
+        .board-table tbody td {
+            border-top: 1px solid #e7e7e7;
+            text-align: center;
+        }
+        .board-table tbody th {
+            padding-left: 28px;
+            padding-right: 14px;
+            border-top: 1px solid #e7e7e7;
+            text-align: left;
+        }
+        .board-table tbody th p{
+            display: none;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0 30px;
+            font-size: 15px;
+            font-weight: 400;
+            background: transparent;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border: 1px solid transparent;
+            text-transform: uppercase;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -ms-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+        .btn-dark {
+            background: #555;
+            color: #fff;
+        }
+        .btn-dark:hover, .btn-dark:focus {
+            background: #373737;
+            border-color: #373737;
+            color: #fff;
+        }
+        .btn-dark {
+            background: #555;
+            color: #fff;
+        }
+        .btn-dark:hover, .btn-dark:focus {
+            background: #373737;
+            border-color: #373737;
+            color: #fff;
+        }
+        * {
+            list-style: none;
+            text-decoration: none;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .blind {
+            position: absolute;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            margin: -1px;
+            width: 1px;
+            height: 1px;
+        }
+        .pagination {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            justify-content: center;
+        }
+
+        .page-link {
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            margin: 2px;
+        }
+
+        .page-link.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btn-write {
+            background-color: #555;
+            width:70px;
+        }
+        .btn-write:hover {
+            background-color: #373737;
+            border-color: #373737;
+        }
+        .btn-write-loc {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .table-container {
+            margin-top: 100px;
         }
     </style>
 </th:block>
 
-<div layout:fragment="content">
-
-    <form th:action="@{'/admin/rests/' + ${rests.number}}" role="form" method="get" th:object="${rests}">
-        <table class="table">
-            <thead>
-            <tr>
-                <td>식당아이디</td>
-                <td>카테고리</td>
-                <td>식당명</td>
-                <td>식당번호</td>
-                <td>등록자</td>
-                <td>등록일</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="rest, status: ${rests.getContent()}">
-                <td th:text="${rest.id}"></td>
-                <td th:text="${rest.category}"></td>
-                <td>
-                    <a th:href="'/admin/rest/'+${rest.id}" th:text="${rest.restNm}"></a>
-                </td>
-                <!--<td th:text="${rest.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL} ? '판매중' : '품절'"></td>-->
-                <td th:text="${rest.restPhone}"></td>
-                <td th:text="${rest.createdBy}"></td>
-                <td th:text="${rest.regTime}"></td>
-            </tr>
-            </tbody>
-        </table>
-
-        <div th:with="start=${(rests.number/maxPage)*maxPage + 1}, end=(${(rests.totalPages == 0) ? 1 : (start + (maxPage - 1) < rests.totalPages ? start + (maxPage - 1) : rests.totalPages)})" >
-            <ul class="pagination justify-content-center">
-
-                <li class="page-item" th:classappend="${rests.first}?'disabled'">
-                    <a th:onclick="'javascript:page(' + ${rests.number - 1} + ')'" aria-label='Previous' class="page-link">
-                        <span aria-hidden='true'>Previous</span>
-                    </a>
-                </li>
-
-                <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${rests.number eq page-1}?'active':''">
-                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
-                </li>
-
-                <li class="page-item" th:classappend="${rests.last}?'disabled'">
-                    <a th:onclick="'javascript:page(' + ${rests.number + 1} + ')'" aria-label='Next' class="page-link">
-                        <span aria-hidden='true'>Next</span>
-                    </a>
-                </li>
-
-            </ul>
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+            <span class="icofont-close js-menu-toggle"></span>
         </div>
-
-        <div class="form-inline justify-content-center" th:object="${restSearchDto}">
-            <select th:field="*{searchDateType}" class="form-control" style="width:auto;">
-                <option value="all">전체기간</option>
-                <option value="1d">1일</option>
-                <option value="1w">1주</option>
-                <option value="1m">1개월</option>
-                <option value="6m">6개월</option>
-            </select>
-            <!--<select th:field="*{searchSellStatus}" class="form-control" style="width:auto;">
-                <option value="">판매상태(전체)</option>
-                <option value="SELL">판매</option>
-                <option value="SOLD_OUT">품절</option>
-            </select>-->
-            <select th:field="*{searchBy}" class="form-control" style="width:auto;">
-                <option value="restNm">식당명</option>
-                <option value="createdBy">등록자</option>
-                <option value="category">카테고리</option>
-            </select>
-            <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
-            <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
-        </div>
-    </form>
-
+    </div>
+    <div class="site-mobile-menu-body"></div>
 </div>
 
+<div id="nav" th:replace="layouts/nav.html :: nav"></div>
+
+<body>
+<div layout:fragment="content">
+    <section class="notice">
+
+        <form th:action="@{'/admin/rests/' + ${rests.number}}" role="form" method="get" th:object="${rests}">
+            <div class="container table-container">
+                <table class="table table-responsive mx-auto">
+                    <thead>
+                    <tr>
+                        <td>식당아이디</td>
+                        <td>카테고리</td>
+                        <td>식당명</td>
+                        <td>식당번호</td>
+                        <td>등록자</td>
+                        <td>등록일</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="rest, status: ${rests.getContent()}">
+                        <td th:text="${rest.id}"></td>
+                        <td th:text="${rest.category}"></td>
+                        <td>
+                            <a th:href="'/admin/rest/'+${rest.id}" th:text="${rest.restNm}"></a>
+                        </td>
+                        <td th:text="${rest.restPhone}"></td>
+                        <td th:text="${rest.createdBy}"></td>
+                        <td th:text="${rest.regTime}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div th:with="start=${(rests.number/maxPage)*maxPage + 1}, end=(${(rests.totalPages == 0) ? 1 : (start + (maxPage - 1) < rests.totalPages ? start + (maxPage - 1) : rests.totalPages)})" >
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item" th:classappend="${rests.first}?'disabled'">
+                            <a th:onclick="'javascript:page(' + ${rests.number - 1} + ')'" aria-label='Previous' class="page-link">
+                                <span aria-hidden='true'>Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${rests.number eq page-1}?'active':''">
+                            <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+                        </li>
+                        <li class="page-item" th:classappend="${rests.last}?'disabled'">
+                            <a th:onclick="'javascript:page(' + ${rests.number + 1} + ')'" aria-label='Next' class="page-link">
+                                <span aria-hidden='true'>Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="row justify-content-center mt-4">
+                    <div class="col-auto">
+                        <select th:field="*{searchDateType}" class="form-select">
+                            <option value="all">전체기간</option>
+                            <option value="1d">1일</option>
+                            <option value="1w">1주</option>
+                            <option value="1m">1개월</option>
+                            <option value="6m">6개월</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <select th:field="*{searchBy}" class="form-select">
+                            <option value="restNm">식당명</option>
+                            <option value="createdBy">등록자</option>
+                            <option value="category">카테고리</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
+                    </div>
+                    <div class="col-auto">
+                        <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </section>
+</div>
+</body>
+
+<div id="footer" th:replace="layouts/footer.html :: footer"></div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/tiny-slider.js"></script>
+<script src="/js/aos.js"></script>
+<script src="/js/navbar.js"></script>
+<script src="/js/counter.js"></script>
+<script src="/js/custom.js"></script>
 </html>
