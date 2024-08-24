@@ -1,60 +1,183 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Untree.co" />
+  <link rel="shortcut icon" href="favicon.png" />
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap5" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="/fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css" />
+
+  <link rel="stylesheet" href="/css/tiny-slider.css" />
+  <link rel="stylesheet" href="/css/aos.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300&family=Nanum+Gothic:wght@700&family=Orbit&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"><!--전화아이콘-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"><!--주소아이콘-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
-  <title>Title</title>
+  <meta name="_csrf" th:content="${_csrf.token}"/>
 
-  <!-- CSS only -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link th:href="@{/css/layout1.css}" rel="stylesheet">
+  <!-- 사용자 CSS 추가 -->
+  <th:block layout:fragment="css">
+    <style>
+      .my-reservation {
+        padding-top: 80px;
+        padding-bottom: 40px;
+      }
 
-  <!-- JS, Popper.js, and jQuery -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      .page-title {
+        margin-bottom: 60px;
+      }
 
-  <th:block layout:fragment="script"></th:block>
-  <th:block layout:fragment="css"></th:block>
+      .page-title h3 {
+        font-size: 28px;
+        color: #333333;
+        font-weight: 400;
+        text-align: center;
+      }
 
+      .reservation-table {
+        font-size: 13px;
+        width: 100%;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        border-collapse: collapse;
+      }
+
+      .reservation-table a {
+        color: #333;
+        display: inline-block;
+        line-height: 1.4;
+        word-break: break-all;
+        vertical-align: middle;
+      }
+
+      .reservation-table a:hover {
+        text-decoration: underline;
+      }
+
+      .reservation-table th {
+        text-align: center;
+        padding: 14px 0;
+      }
+
+      .reservation-table .th-name {
+        width: 200px;
+      }
+
+      .reservation-table th, .reservation-table td {
+        padding: 14px 0;
+        border-top: 1px solid #e7e7e7;
+        text-align: center;
+      }
+
+      .reservation-table tbody th {
+        padding-left: 28px;
+        padding-right: 14px;
+        border-top: 1px solid #e7e7e7;
+        text-align: left;
+      }
+
+      .pagination {
+        display: flex;
+        list-style-type: none;
+        padding: 0;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .page-link {
+        padding: 8px 16px;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1px solid #ddd;
+        margin: 2px;
+      }
+
+      .page-link.active {
+        background-color: #4CAF50;
+        color: white;
+      }
+      .btn-sm-custom {
+        font-size: 10px;
+        padding: 2px 6px;
+      }
+
+      .review-form {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .review-form select {
+        margin-right: 10px;
+      }
+
+      .btn-sm-custom {
+        font-size: 12px;
+        padding: 2px 6px;
+        height: auto;
+        line-height: 1.5;
+      }
+
+      .btn-xs {
+        font-size: 13px;
+        padding: 2px 8px;
+        line-height: 1.5;
+        border-radius: 3px;
+      }
+
+      .pagination-container {
+        margin-top: 100px;
+      }
+    </style>
+  </th:block>
+
+  <title>
+    즐거운 식당 예약 문화 - 다이닝잇!
+  </title>
 </head>
+
 <body>
-
-<div th:replace="fragments/header::header"></div>
-
-<div layout:fragment="content" class="content">
-  <div class="site-mobile-menu site-navbar-target">
-    <div class="site-mobile-menu-header">
-      <div class="site-mobile-menu-close">
-        <span class="icofont-close js-menu-toggle"></span>
-      </div>
-    </div>
-    <div class="site-mobile-menu-body"></div>
-  </div>
-
-
-
-  <div class="container">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-lg-9 text-center mt-5">
-        <h1 class="heading" data-aos="fade-up">
-          내 예약 보기
-        </h1>
-      </div>
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
     </div>
   </div>
+  <div class="site-mobile-menu-body"></div>
 </div>
 
+<div id="nav" th:replace="layouts/nav.html :: nav"></div>
 
 
-<div class="section">
-  <div class="container">
-    <div class="row justify-content-between">
-      <div class="col-lg-7">
-        <h1>예약 리스트</h1>
-        <table class="table table-striped">
+<div class="jumbotron jumbotron-fluid mgt-50">
+  <section class="my-reservation">
+    <div class="page-title">
+      <div class="container">
+        <h3 style="margin-top: 90px">나의 예약</h3>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="col-lg-7 mx-auto">
+        <table class="reservation-table">
           <thead>
           <tr>
             <th>음식점이름</th>
@@ -72,14 +195,14 @@
 
           <th:block th:each="reservation : ${reservations}" th:if="${not reservations.isEmpty()}">
             <tr>
-              <td th:text="${reservation.re_restaurant.restNm}" >식당</td>
+              <td th:text="${reservation.re_restaurant.restNm}">식당</td>
               <td th:text="${reservation.request}"></td>
               <td th:text="${reservation.people}"></td>
-              <td th:text="${reservation.create_date}"></td>
+              <td th:text="${#dates.format(reservation.create_date, 'yyyy-MM-dd HH:mm')}"></td>
               <td>
                 <div class="buttonContainer" th:data-re_id="${reservation.re_id}">
-                  <button class="cancelButton" th:if="${reservation.create_date > #dates.createNow()}">예약취소</button>
-                  <div id="reviewForm" th:if="${reservation.create_date < #dates.createNow() and reservation.review == null}" th:data-re_id="${reservation.re_id}">
+                  <button class="btn btn-danger btn-xs" th:if="${reservation.create_date > #dates.createNow()}">예약취소</button>
+                  <div id="reviewForm" th:if="${reservation.create_date < #dates.createNow() and reservation.review == null}" th:data-re_id="${reservation.re_id}" class="review-form">
                     <input type="hidden" id="re_id" name="re_id" th:value="${reservation.re_id}">
                     <select id="reviewSelect" placeholder="별점을 선택해주세요">
                       <option value="1">1점</option>
@@ -88,16 +211,16 @@
                       <option value="4">4점</option>
                       <option value="5">5점</option>
                     </select>
-                    <button id="submitReviewButton">제출</button>
+                    <button id="submitReviewButton" class="btn btn-primary btn-sm-custom">제출</button>
                   </div>
                 </div>
               </td>
             </tr>
           </th:block>
-
           </tbody>
         </table>
-        <div>
+
+        <div class="pagination-container">
           <ul class="pagination">
             <li th:if="${page.first}">
               <a href="#" class="page-link disabled">&laquo;</a>
@@ -120,90 +243,93 @@
         </div>
       </div>
     </div>
-
-  </div>
-</div> <!-- 푸터-->
-
+  </section>
 </div>
 
-<div th:replace="fragments/footer::footer"></div>
 
+<div id="footer" th:replace="layouts/footer.html :: footer"></div>
+<script></script>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/tiny-slider.js"></script>
+<script src="/js/aos.js"></script>
+<script src="/js/navbar.js"></script>
+<script src="/js/counter.js"></script>
+<script src="/js/custom.js"></script>
 </body>
 
 <script th:inline="javascript">
-   document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function() {
     // 취소 버튼과 리뷰 작성 폼에 대한 이벤트 핸들링
     var buttons = document.querySelectorAll('.cancelButton');
     buttons.forEach(function(button) {
-        var container = button.parentNode;
-        var re_id = container.dataset.re_id;
+      var container = button.parentNode;
+      var re_id = container.dataset.re_id;
 
-        button.addEventListener('click', function() {
-            var confirmed = confirm('예약을 취소하시겠습니까?');
-            if (confirmed) {
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', '/reservation/cancel?re_id=' + re_id, true);
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      button.addEventListener('click', function() {
+        var confirmed = confirm('예약을 취소하시겠습니까?');
+        if (confirmed) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', '/reservation/cancel?re_id=' + re_id, true);
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            var response = xhr.responseText;
-                            console.log('서버 응답:', response);
-                            location.reload();
-                        } else {
-                            console.error('Ajax 요청 실패:', xhr.status);
-                        }
-                    }
-                };
-                xhr.send();
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                var response = xhr.responseText;
+                console.log('서버 응답:', response);
+                location.reload();
+              } else {
+                console.error('Ajax 요청 실패:', xhr.status);
+              }
             }
-        });
+          };
+          xhr.send();
+        }
+      });
     });
 
     // 리뷰 작성 폼에 대한 이벤트 핸들링
-   var submitReviewButton = document.getElementById("submitReviewButton");
+    var submitReviewButton = document.getElementById("submitReviewButton");
     if (submitReviewButton) {
-        submitReviewButton.addEventListener("click", function() {
-            var reviewSelect = document.getElementById("reviewSelect");
-            var selectedValue = reviewSelect.value;
-            var re_id = document.getElementById("re_id").value;
+      submitReviewButton.addEventListener("click", function() {
+        var reviewSelect = document.getElementById("reviewSelect");
+        var selectedValue = reviewSelect.value;
+        var re_id = document.getElementById("re_id").value;
 
-            /*<![CDATA[*/
-            var csrfToken = /*[[${_csrf.token}]]*/ '';
-            var csrfHeader = /*[[${_csrf.headerName}]]*/ '';
-            /*]]>*/
+        /*<![CDATA[*/
+        var csrfToken = /*[[${_csrf.token}]]*/ '';
+        var csrfHeader = /*[[${_csrf.headerName}]]*/ '';
+        /*]]>*/
 
-            console.log('Selected Value:', selectedValue);
-            console.log('CSRF Token:', csrfToken);
-            console.log('CSRF Header:', csrfHeader);
+        console.log('Selected Value:', selectedValue);
+        console.log('CSRF Token:', csrfToken);
+        console.log('CSRF Header:', csrfHeader);
 
-            if (selectedValue !== "") {
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "/review", true);
-                xhr.setRequestHeader(csrfHeader, csrfToken);
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            console.log("리뷰 전송 성공:", xhr.responseText);
-                            alert("반영되었습니다. 이용해주셔서 감사합니다.");
-                            location.reload(); // 페이지 리로드 또는 필요한 작업 수행
-                        } else {
-                            console.error("리뷰 전송 실패:", xhr.statusText);
-                        }
-                    }
-                };
-
-                var formData = "re_id=" + encodeURIComponent(re_id) + "&star=" + encodeURIComponent(selectedValue);
-                xhr.send(formData);
-            } else {
-                alert("별점을 선택해주세요.");
+        if (selectedValue !== "") {
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "/review", true);
+          xhr.setRequestHeader(csrfHeader, csrfToken);
+          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                console.log("리뷰 전송 성공:", xhr.responseText);
+                alert("반영되었습니다. 이용해주셔서 감사합니다.");
+                location.reload(); // 페이지 리로드 또는 필요한 작업 수행
+              } else {
+                console.error("리뷰 전송 실패:", xhr.statusText);
+              }
             }
-        });
-    }
-});
-</script>
+          };
 
+          var formData = "re_id=" + encodeURIComponent(re_id) + "&star=" + encodeURIComponent(selectedValue);
+          xhr.send(formData);
+        } else {
+          alert("별점을 선택해주세요.");
+        }
+      });
+    }
+  });
 </script>
 </html>
